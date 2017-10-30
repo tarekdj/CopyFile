@@ -1,5 +1,5 @@
 {
-    "name": "slowprog/composer-copy-file",
+    "name": "tarekdj/composer-copy-file",
     "description": "Composer script copying your files after install",
     "keywords": ["copy file"],
     "homepage": "https://github.com/SlowProg/composer-copy-file",
