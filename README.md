@@ -104,3 +104,27 @@ dir/
             file1.txt
             file_rename.txt
     ```
+    4. One to many destinations:
+
+    ```
+    {
+        "extra": {
+            "copy-file": {
+                "dir/subdir/file1.txt": ["web/folder/file1.txt", "web/other/file1.txt"]
+            }
+        }
+    }
+    ```
+
+    Result:
+
+    ```
+    web/
+        folder/
+            file1.txt
+        other/
+            file1.txt
+    ```
+
+### Credits
+Thanks Slowprog for the base project - [https://github.com/slowprog](https://github.com/slowprog)  
