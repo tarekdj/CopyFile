@@ -104,7 +104,7 @@ dir/
             file1.txt
             file_rename.txt
     ```
-    4. One to many destinations:
+4. One to many destinations:
 
     ```
     {
