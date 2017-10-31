@@ -37,6 +37,7 @@ dir/
     subdir/
         file1.txt
         file2.txt
+        .hidden
 ```
 
 1. Dir-to-dir:
@@ -58,6 +59,7 @@ dir/
         other/
             file1.txt
             file2.txt
+            .hidden
     ```
 
 2. File-to-dir:
