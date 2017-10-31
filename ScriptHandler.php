@@ -80,7 +80,31 @@ class ScriptHandler
         $io = $event->getIO();
 
         foreach ($files as $from => $to) {
-            if (is_array($to)) {
+            $matches_in_values = [];
+            $matches_in_keys = [];
+            if (!is_array($to)) {
+                preg_match_all('/{[a-z,0-9]*}/', $to, $matches_in_values);
+                preg_match_all('/{[a-z,0-9]*}/', $from, $matches_in_keys);               
+            }
+            // Implement mapping feature.
+            if ($matches_in_values || $matches_in_keys) {
+                $matches = array_merge($matches_in_keys[0], $matches_in_values[0]);
+                $mapping_array = isset($extras['copy-file-mapping']) ? $extras['copy-file-mapping'] : [];
+               
+                if (!empty($matches) && !empty($mapping_array)) {
+                    foreach ($mapping_array as $key => $values) {
+                        $from_ = $from;
+                        $to_ = $to;
+                        foreach ($values as $k => $v) {
+                            $from_ = str_replace("{".$k."}", $v, $from_);
+                            $to_ = str_replace("{".$k."}", $v, $to_);
+                        }
+                        self::copyFiles($from_, $to_, $fs, $io)
+                    }
+                }
+            }
+            elseif (is_array($to)) {
+                // Implement One to many destinations.
                 foreach ($to as $to_) {
                     self::copyFiles($from, $to_, $fs, $io);
                 }
