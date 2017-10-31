@@ -92,7 +92,6 @@ class ScriptHandler
                 $mapping_array = isset($extras['copy-file-mapping']) ? $extras['copy-file-mapping'] : [];
                 // Implement file mapping.
                 if (!empty($matches) && !empty($mapping_array)) {
-                     var_dump("$from => $to");
                     foreach ($mapping_array as $key => $values) {
                         $from_ = $from;
                         $to_ = $to;
@@ -100,7 +99,7 @@ class ScriptHandler
                             $from_ = str_replace("{".$k."}", $v, $from_);
                             $to_ = str_replace("{".$k."}", $v, $to_);
                         }
-                        self::copyFiles($from, $to_, $fs, $io);
+                        self::copyFiles($from_, $to_, $fs, $io);
                         
                     }
                 }
